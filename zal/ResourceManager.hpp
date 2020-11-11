@@ -22,11 +22,11 @@ public:
 
     ResourceManager& operator=(const ResourceManager& Rm)
     {
-        if (&Rm == this) {
-           
+        if (R == Rm.R) {
+            
         }
         else {
-            R = nullptr;
+            delete R;
             R = new Resource{*Rm.R};
            
         }
@@ -43,7 +43,7 @@ public:
 
     ResourceManager& operator=(ResourceManager&& Rm)
     {
-        if (&Rm == this) {
+        if (R == Rm.R) {
             
         }
         else {
