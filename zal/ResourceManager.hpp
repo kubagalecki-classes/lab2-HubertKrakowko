@@ -14,6 +14,7 @@ class ResourceManager
     Resource* G;
     G=Rm.R;
     R=G;
+    delete G;
     }
     
     
@@ -24,7 +25,7 @@ class ResourceManager
         {
 
         }
-        else if{
+        else{
           R=nullptr;
           R=Rm.R;
         }
@@ -37,7 +38,7 @@ class ResourceManager
         Rm.R = nullptr;
     }
 
-   // ResourceManager& operator=(ResourceManager&& rm) {}
+   ResourceManager& operator=(ResourceManager&& rm) {}
 
     double get() {return R->get();}
 
