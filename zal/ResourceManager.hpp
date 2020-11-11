@@ -4,32 +4,31 @@
 
 class ResourceManager
 {
- public:
+public:
     Resource* R;
-    ResourceManager() : R{} { cout << "1tworzenie" << endl; }
-
-    ResourceManager(const ResourceManager& Rm)
+    ResourceManager()
     {
-        Resource* G;
-        G = Rm.R;
-        R = G;
-        G = nullptr;
-        delete G;
-        //cout << "2kopiuje" << endl;
+        R = new Resource;
+        
+    }
+
+    ResourceManager(const ResourceManager& Rm) : R(Rm.R)
+    {
+
+        R = new Resource{*Rm.R};
+
+       
     }
 
     ResourceManager& operator=(const ResourceManager& Rm)
     {
         if (&Rm == this) {
+           
         }
         else {
             R = nullptr;
-            Resource* G;
-            G = Rm.R;
-            R = G;
-           // cout << "3kopiuje=" << endl;
-            G = nullptr;
-            delete G;
+            R = new Resource{*Rm.R};
+           
         }
         return *this;
     }
@@ -39,23 +38,27 @@ class ResourceManager
         R    = Rm.R;
         Rm.R = nullptr;
         delete Rm.R;
-        //cout << "przeniesienie" << endl;
+        
     }
 
     ResourceManager& operator=(ResourceManager&& Rm)
     {
-        R = Rm.R;
-       // cout << "kopia przeniesienia" << endl;
-        Rm.R = nullptr;
-        delete Rm.R;
+        if (&Rm == this) {
+            
+        }
+        else {
+            delete R;
+            R = Rm.R;
+            
+            Rm.R = nullptr;
+        }
         return *this;
     }
 
     double get()
     {
-        //cout << "k";
+        
         return R->get();
     }
     ~ResourceManager() { delete R; }
-
 };
