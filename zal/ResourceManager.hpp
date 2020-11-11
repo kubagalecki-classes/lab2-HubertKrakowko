@@ -9,10 +9,10 @@ class ResourceManager
     ResourceManager(): R{} {}
     ~ResourceManager() {delete R;}
 
-    ResourceManager(const ResourceManager& rm)
+    ResourceManager(const ResourceManager& Rm)
     {
     Resource* G;
-    G=rm.r;
+    G=Rm.R;
     R=G;
     }
     
@@ -33,8 +33,8 @@ class ResourceManager
 
     ResourceManager(ResourceManager&& Rm)
     {
-        R = Rm.r;
-        Rm.r = nullptr;
+        R = Rm.R;
+        Rm.R = nullptr;
     }
 
    // ResourceManager& operator=(ResourceManager&& rm) {}
